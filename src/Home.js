@@ -2,7 +2,6 @@ import React from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import { Nav, Input, Footer } from './components';
 import { hsvToRgb } from './Utils';
-import db from './db';
 
 
 const GlobalStyle = createGlobalStyle`

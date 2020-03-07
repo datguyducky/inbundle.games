@@ -49,7 +49,7 @@ export default function Input() {
 	];
 	
 
-	const handleInput = (e) => {
+	const searchHandler = (e) => {
 		const target = e.target;
 		const value = target.value;
 		setSearch(value);
@@ -76,7 +76,7 @@ export default function Input() {
 				<input 
 					type='text' 
 					value={SearchValue} 
-					onChange={e => handleInput(e)}
+					onChange={e => searchHandler(e)}
 				/>
 			</label>
 		</StyledInput>
