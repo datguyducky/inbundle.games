@@ -1,41 +1,33 @@
 import React from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
+import { Nav, Input, Footer } from './components';
+import { hsvToRgb } from './Utils';
+import db from './db';
 
 
 const GlobalStyle = createGlobalStyle`
 	html, body {
 		margin: 0;
 		background-color: #000;
-		color: #fff;
+		color: rgb(${hsvToRgb()});
 		font-family: 'Spartan', sans-serif;
 	}
 `
 const StyledHome = styled.div`
+	width: 100%;
+	height: 100vh;
+	color: inherit;
+	display: grid;
+	grid-template-rows: 3em 1fr 2em;
+`
+const ContentWrapper = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	width: 100%;
-	height: 100vh;
-	color: orangered;
 
 	h1 {
 		font-size: 62px;
 		font-weight: 600;
-	}
-
-	input {
-		margin: 0 16px;
-		height: 1em;
-		width: 460px;
-		padding: 0;
-		background-color: #000;
-		border-radius: 0;
-		border: none;
-		color: #fff;
-		border-bottom: 2px solid orangered;
-		font-size: 44px;
-		text-align: center;
-		font-weight: 400;
 	}
 `
 
@@ -44,9 +36,14 @@ export default function Home() {
 		<StyledHome>
 			<GlobalStyle/>
 
-			<h1>WAS</h1>
-			<input type='text' value='Grand Theft Auto V'/>
-			<h1>IN A BUNDLE?</h1>
+			<Nav/>
+			<ContentWrapper>
+				<h1>WAS</h1>
+					<Input/>
+				<h1>IN A BUNDLE?</h1>
+			</ContentWrapper>
+			<Footer/>
+
 		</StyledHome>
 	)
 }
