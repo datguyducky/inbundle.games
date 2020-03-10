@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link, useLocation } from 'react-router-dom';
 
 
 const StyledNav = styled.nav`
@@ -30,10 +31,19 @@ const StyledNav = styled.nav`
 
 
 export default function Nav() {
+	const location = useLocation();
+
 	return (
 		<StyledNav>
 			<ul>
-				<li><a href='https://github.com/datguysheepy'>ABOUT</a></li>
+				<li>
+					{
+						location.pathname === '/about' ?
+							<Link to='/'>HOME</Link>
+						: 
+							<Link to='/about'>ABOUT</Link>
+					}
+				</li>
 				<li><a href='https://github.com/datguysheepy'>GITHUB</a></li>
 			</ul>
 		</StyledNav>
