@@ -49,7 +49,7 @@ export default function Input() {
 	];
 	
 
-	const searchHandler = (e) => {
+	const searchHandler = async (e) => {
 		const target = e.target;
 		const value = target.value;
 		setSearch(value);
