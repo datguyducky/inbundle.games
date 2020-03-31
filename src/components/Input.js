@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import ReactTypingEffect from 'react-typing-effect';
 import styled from 'styled-components';
+import { withRouter } from 'react-router-dom';
 
-const StyledInput = styled.span`
+
+const StyledForm = styled.form`
 	input {
 		padding: 0;
 		background-color: transparent;
@@ -36,8 +38,9 @@ const StyledInput = styled.span`
 `
 
 
-export default function Input() {
+function Input(props) {
 	const [SearchValue, setSearch] = useState('');
+	//Array with title of games for auto-typing effect on search input 
 	const gamesArr = [
 		'Grand Theft Auto V',
 		'Rimworld',
@@ -47,7 +50,7 @@ export default function Input() {
 		'Prison Architect',
 		'Frostpunk'
 	];
-	
+
 
 	const searchHandler = async (e) => {
 		const target = e.target;
@@ -56,18 +59,34 @@ export default function Input() {
 	}
 
 
+	const submitHandler = (event) => {
+		//kinda hacky way to submit form without button,
+		//but with only by pressing ENTER key
+		event.preventDefault();
+		props.history.push({
+			pathname: '/search',
+			state: {game_title: SearchValue},
+			search:	`?title=${SearchValue}`
+		})
+		//it takes us to SEARCH route with game_title query
+	}
+
+	//TODO: fix searching new game on SEARCH route
 	return (
-		<StyledInput>
-			<label id='lb'>
+		<StyledForm onSubmit={submitHandler}>
+			<label id='lb' className={props.propClass}>
 				<span id='u-text'>
 					{
 						SearchValue === '' ?
-							<ReactTypingEffect
-								text={gamesArr}
-								typingDelay='1000'
-								eraseDelay='2000'
-								speed='200'
-							/>
+							props.history.location.state ?
+								''
+							:
+								<ReactTypingEffect
+									text={gamesArr}
+									typingDelay='1000'
+									eraseDelay='2000'
+									speed='200'
+								/>
 						: ''
 					}
 
@@ -75,10 +94,19 @@ export default function Input() {
 
 				<input 
 					type='text' 
-					value={SearchValue} 
+					value={
+						props.history.location.state ?
+							props.history.location.state.game_title
+						: SearchValue
+					} 
 					onChange={e => searchHandler(e)}
 				/>
 			</label>
-		</StyledInput>
+			
+			<input type="submit" hidden />
+		</StyledForm>
 	)
 }
+
+
+export default withRouter(Input)

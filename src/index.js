@@ -6,7 +6,7 @@ import styled, { createGlobalStyle } from 'styled-components';
 
 import Home from './Home';
 import About from './About';
-import Game from './Game';
+import Search from './Search';
 import Nav from './components/Nav';
 import Footer from './components/Footer';
 import { hsvToRgb } from './Utils';
@@ -21,7 +21,7 @@ const GlobalStyle = createGlobalStyle`
 	html, body {
 		margin: 0;
 		background-color: #000;
-		color: rgb(${hsvToRgb()});
+		color: rgb(${hsvToRgb(0, 0.7, 0.95)});
 		font-family: 'Spartan', sans-serif;
 	}
 `
@@ -36,7 +36,7 @@ const routing = (
 
 			<Route exact path="/" component={Home} />
 			<Route path='/about' component={About} />
-			<Route path='/game?search=:game_name' component={Game}/>
+			<Route path='/search' component={Search}/>
 
 			<Footer />
 		</IndexWrapper>

@@ -1,9 +1,10 @@
-export const hsvToRgb = () => {
+export const hsvToRgb = (h, s, v) => {
 	var r, g, b;
 	var golden_ratio_conjugate = 0.618033988749895;
-	var h = Math.random();
-	var s = 0.7;
-	var v = 0.95;
+	
+	if(h === 0) {
+		h = Math.random();
+	}
 
 	h += golden_ratio_conjugate;
 	h %= 1;
