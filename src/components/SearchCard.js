@@ -4,10 +4,21 @@ import PlatformIcon from '../components/PlatformIcon';
 
 
 const StyledGameCard = styled.div`
+	position: relative;
 	height: 74px;
 	display: flex;
 	cursor: pointer;
 	align-items: center;
+
+	#border-elem {
+		position: absolute;
+		border-bottom: 1px solid #222;
+		width: 92%;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		margin: 0 auto;
+	}
 
 	:hover, :active {
 		opacity: 0.62;
@@ -77,6 +88,8 @@ export default function SearchCard(props) {
 					{props.game_title}
 				</h3>
 			</GameInfo>
+
+			<div id='border-elem'/>
 		</StyledGameCard>
 	)
 }

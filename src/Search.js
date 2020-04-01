@@ -4,6 +4,7 @@ import Input from './components/Input';
 import SearchCard from './components/SearchCard';
 
 
+
 const StyledGame = styled.div`
 	width: 980px;
 	margin: 0 auto;
@@ -59,6 +60,7 @@ const Result = styled.div`
 export default function Game(props) {
 	const [gamesSearch, setGamesSearch] = useState([]);
 
+	
 	useEffect(() => {	
 		const ToSearch = async () => {
 			const l_state = props.history.location.state || '';
@@ -71,17 +73,43 @@ export default function Game(props) {
 			.then((response) => response.json())
 			.then((data) => {
 				setGamesSearch(data.results);
+
+				if(data.next) {
+					nextToSearch(data.next);
+				}
 			})
 			.catch((error) => {
 				console.error('Error:', error);
 			});
-
-			//TODO: add handler for next page
 		}
 		ToSearch();
+
+		const nextToSearch = async (nextHref) => {
+			await fetch(`${nextHref}`, {
+				headers: {
+					'User-Agent': 'bundle'
+				}	
+			})
+			.then((response) => response.json())
+			.then((data) => {
+				setGamesSearch(prevState => {
+					return [...prevState, ...data.results]
+				})
+
+				/* not good idea for big results like Final Fantasy
+				/* use it with skeleton component
+				if(data.next) {
+					nextToSearch(data.next);
+				}*/
+			})
+			.catch((error) => {
+				console.error('Error:', error);
+			});
+		}
 	}, []);
 
 
+	//TODO: add skeleton component when loading?
 	return (
 		<StyledGame>
 			<TopbarInput>
