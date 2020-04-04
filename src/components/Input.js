@@ -40,6 +40,7 @@ const StyledForm = styled.form`
 
 function Input(props) {
 	const [SearchValue, setSearch] = useState('');
+	const [recentSearch, setRecent] = useState(true );
 	//Array with title of games for auto-typing effect on search input 
 	const gamesArr = [
 		'Grand Theft Auto V',
@@ -53,6 +54,7 @@ function Input(props) {
 
 
 	const searchHandler = async (e) => {
+		setRecent(false); //to be available to search for other game, when we're on SEARCH route or even further
 		const target = e.target;
 		const value = target.value;
 		setSearch(value);
@@ -60,8 +62,7 @@ function Input(props) {
 
 
 	const submitHandler = (event) => {
-		//kinda hacky way to submit form without button,
-		//but with only by pressing ENTER key
+		//kinda hacky way to submit form without button, but with only by pressing ENTER key
 		event.preventDefault();
 		props.history.push({
 			pathname: '/search',
@@ -71,7 +72,7 @@ function Input(props) {
 		//it takes us to SEARCH route with game_title query
 	}
 
-	//TODO: fix searching new game on SEARCH route
+
 	return (
 		<StyledForm onSubmit={submitHandler}>
 			<label id='lb' className={props.propClass}>
@@ -95,7 +96,7 @@ function Input(props) {
 				<input 
 					type='text' 
 					value={
-						props.history.location.state ?
+						props.history.location.state && recentSearch ?
 							props.history.location.state.game_title
 						: SearchValue
 					} 

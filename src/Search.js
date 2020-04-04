@@ -60,7 +60,9 @@ export default function Search(props) {
 	const [gamesSearch, setGamesSearch] = useState([]);
 
 	
-	useEffect(() => {	
+	useEffect(() => {
+		setGamesSearch([]); //by doing this we're hidding old results when we're researching something new and we're waiting for response from API.
+		
 		const ToSearch = async () => {
 			const l_state = props.history.location.state || '';
 			//Using RAWG API to get information about games
@@ -105,7 +107,7 @@ export default function Search(props) {
 				console.error('Error:', error);
 			});
 		}
-	}, []);
+	}, [props.history.location.state.game_title]);
 
 
 	//TODO: add skeleton component when loading?
