@@ -7,6 +7,7 @@ import styled, { createGlobalStyle } from 'styled-components';
 import Home from './Home';
 import About from './About';
 import Search from './Search';
+import Game from './Game';
 import Nav from './components/Nav';
 import Footer from './components/Footer';
 import { hsvToRgb } from './Utils';
@@ -36,7 +37,8 @@ const routing = (
 
 			<Route exact path="/" component={Home} />
 			<Route path='/about' component={About} />
-			<Route path='/search' component={Search}/>
+			<Route path='/search' component={Search} />
+			<Route path='/game' component={Game} />
 
 			<Footer />
 		</IndexWrapper>

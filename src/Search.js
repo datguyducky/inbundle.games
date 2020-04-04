@@ -4,8 +4,7 @@ import Input from './components/Input';
 import SearchCard from './components/SearchCard';
 
 
-
-const StyledGame = styled.div`
+const StyledSearch = styled.div`
 	width: 980px;
 	margin: 0 auto;
 	color: inherit;
@@ -57,7 +56,7 @@ const Result = styled.div`
 `
 
 
-export default function Game(props) {
+export default function Search(props) {
 	const [gamesSearch, setGamesSearch] = useState([]);
 
 	
@@ -111,7 +110,7 @@ export default function Game(props) {
 
 	//TODO: add skeleton component when loading?
 	return (
-		<StyledGame>
+		<StyledSearch>
 			<TopbarInput>
 				<h1>WAS</h1>
 				<Input propClass='top-input'/>
@@ -127,6 +126,8 @@ export default function Game(props) {
 								game_title={e.name}
 								game_cover={e.background_image}
 								platforms={e.platforms}
+								game_id={e.id}
+								game_screenshots={e.short_screenshots}
 								key={i} 
 							/>
 						)
@@ -134,6 +135,6 @@ export default function Game(props) {
 					</Result>
 				: null
 			}
-		</StyledGame>
+		</StyledSearch>
 	)
 }

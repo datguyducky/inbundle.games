@@ -1,9 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import PlatformIcon from '../components/PlatformIcon';
+import { withRouter } from 'react-router-dom';
 
 
-const StyledGameCard = styled.div`
+const StyledSearchCard = styled.div`
 	position: relative;
 	height: 74px;
 	display: flex;
@@ -56,11 +57,25 @@ const PlatformsWrapper = styled.div`
 `
 
 
-export default function SearchCard(props) {
+function SearchCard(props) {
 	const platforms = props.platforms || [];
 
+
+	const clickHandler = () => {
+		props.history.push({
+			pathname: '/game',
+			state: {
+				game_title: props.game_title,
+				game_id: props.game_id,
+				game_screenshots: props.game_screenshots
+			},
+			search:	`?title=${props.game_title}`
+		})
+	}
+
+
 	return (
-		<StyledGameCard>
+		<StyledSearchCard onClick={clickHandler}>
 			<GameCover game_cover={props.game_cover}/>
 			
 			<GameInfo>
@@ -90,6 +105,8 @@ export default function SearchCard(props) {
 			</GameInfo>
 
 			<div id='border-elem'/>
-		</StyledGameCard>
+		</StyledSearchCard>
 	)
 }
+
+export default withRouter(SearchCard)
