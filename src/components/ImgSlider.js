@@ -82,59 +82,65 @@ export default function ImgSlider(props) {
 	
 	
 	useEffect(() => {
-		document.getElementsByClassName('slide-img')[0].style.display = 'block'
-		document.getElementsByClassName('slide-progress')[0].classList.add('active');
+		if (props.img_list) {
+			document.getElementsByClassName('slide-img')[0].style.display = 'block';
+			document.getElementsByClassName('slide-progress')[0].classList.add('active');
+		}
 	}, []);
 
 
 	const SliderNextHandler = () => {
-		let slides = document.getElementsByClassName('slide-img');
-		let bar = document.getElementsByClassName('slide-progress');
-		
-		if (test >= slides.length - 1) {
-			test = 0;
+		if(props.img_list) {
+			let slides = document.getElementsByClassName('slide-img');
+			let bar = document.getElementsByClassName('slide-progress');
 			
-			slides[slides.length - 1].style.display = 'none';
-			slides[test].style.display = 'block';
+			if (test >= slides.length - 1) {
+				test = 0;
+				
+				slides[slides.length - 1].style.display = 'none';
+				slides[test].style.display = 'block';
+				
+				bar[slides.length - 1].classList.remove('active');
+				bar[test].classList.add('active');
+				
+				return;
+			}
 			
-			bar[slides.length - 1].classList.remove('active');
-			bar[test].classList.add('active');
+			slides[test].style.display = 'none';
+			slides[test + 1].style.display = 'block';
+			bar[test].classList.remove('active');
+			bar[test + 1].classList.add('active');
 			
-			return;
+			test += 1;
 		}
-		
-		slides[test].style.display = 'none';
-		slides[test + 1].style.display = 'block';
-		bar[test].classList.remove('active');
-		bar[test + 1].classList.add('active');
-		
-		test += 1;
 	}
 
 	
 	const SliderBackHandler = () => {
-		let slides = document.getElementsByClassName('slide-img');
-		let bar = document.getElementsByClassName('slide-progress');
-		
-		if (test === 0) {
-			slides[test].style.display = 'none';
-			slides[slides.length - 1].style.display = 'block';
+		if(props.img_list) {
+			let slides = document.getElementsByClassName('slide-img');
+			let bar = document.getElementsByClassName('slide-progress');
+			
+			if (test === 0) {
+				slides[test].style.display = 'none';
+				slides[slides.length - 1].style.display = 'block';
+				
+				bar[test].classList.remove('active');
+				bar[slides.length - 1].classList.add('active');
+				
+				test = slides.length - 1;
+				
+				return;
+			}
+
+			slides[test].style.display = 'none'
+			slides[test - 1].style.display = 'block';
 			
 			bar[test].classList.remove('active');
-			bar[slides.length - 1].classList.add('active');
-			
-			test = slides.length - 1;
-			
-			return;
+			bar[test - 1].classList.add('active');
+
+			test -= 1;
 		}
-
-		slides[test].style.display = 'none'
-		slides[test - 1].style.display = 'block';
-		
-		bar[test].classList.remove('active');
-		bar[test - 1].classList.add('active');
-
-		test -= 1;
 	}
 	
 

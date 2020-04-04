@@ -155,7 +155,7 @@ export default function Game(props) {
 
 	}, []);
 
-	
+
 	return (
 		<StyledGame>
 			<TopbarInput>
@@ -192,7 +192,7 @@ export default function Game(props) {
 							<span className='detailsQ'>Publisher:</span>
 							<span className='detailsA'>
 								{
-									gameInfo.publishers ? 
+									gameInfo.publishers && gameInfo.publishers.length > 0 ? 
 										gameInfo.publishers[0].name
 									: null
 								}
@@ -203,7 +203,7 @@ export default function Game(props) {
 							<span className='detailsQ'>Developer:</span>
 							<span className='detailsA'>
 								{
-									gameInfo.developers ? 
+									gameInfo.developers && gameInfo.developers.length > 0 ? 
 										gameInfo.developers[0].name
 									: null
 								}
@@ -245,7 +245,10 @@ export default function Game(props) {
 								{
 									gameInfo.genres ? 
 										gameInfo.genres.map((e, i) => 
-											<span key={i}>{e.name}, </span>
+											gameInfo.genres.length > 1 ?
+												<span key={i}>{e.name}, </span>
+											: 
+												<span key={i}>{e.name} </span>
 										)
 									: null
 								}
