@@ -26,3 +26,19 @@ export const hsvToRgb = (h, s, v) => {
   
 	return [ Math.round(r * 255) +',' + Math.round(g * 255) + ',' + Math.round(b * 255) ];
 }
+
+export const dateConvert = (timestamp) => {
+	let d = new Date(timestamp);
+
+	let dd = d.getDate();
+	if(dd < 10) {
+		dd = `0${dd}`;
+	}
+
+	let mm = d.getMonth() + 1;
+	if(mm < 10) {
+		mm = `0${mm}`;
+	}
+
+	return dd + '-' + mm + '-' + d.getFullYear();
+}

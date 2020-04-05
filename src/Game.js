@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import Input from './components/Input';
 import ImgSlider from './components/ImgSlider';
 import PlatformIcon from './components/PlatformIcon';
-import Emoji from './components/Emoji';
+import Bundled from './components/Bundled';
+import NotBundled from './components/NotBundled';
 
 
 const StyledGame = styled.div`
@@ -36,42 +37,6 @@ const TopbarInput = styled.div`
 		font-size: 21px;
 	}
 `
-const BundleSection = styled.div`
-	margin: 24px 0;
-	background-color: #111;
-	width: 928px;
-	text-align: center;
-	padding: 12px 16px;
-	border-radius: 6px;
-
-	p {
-		margin: 0;
-	}
-
-	#bundle-name {
-		font-size: 18px;
-		letter-spacing: 2px;
-	}
-
-	#bundle-date {
-		font-size: 14px;
-	}
-`
-
-const BundleHeader = styled.div`
-	display: flex;
-	justify-content: center;
-
-	h1 {
-		font-size: 28px;
-		margin: 0;
-		color: #fff;
-	}
-
-	#game-name {
-		margin: 0 6px;
-	}
-`
 const GameSection = styled.div`
 	display: grid;
 	grid-template-columns: 52% 1fr;
@@ -99,10 +64,11 @@ const GameDetails = styled.div`
 	section {
 		display: flex;
 		flex-direction: column;
-		min-width: 72%;
 		align-items: center;
 		padding: 12px 0;
 		border-bottom: 2px solid gray;
+		width: 72%;
+		text-align: center;
 
 		:last-of-type {
 			border-bottom: none;
@@ -133,6 +99,7 @@ const GameDetails = styled.div`
 export default function Game(props) {
 	const [gameInfo, setGameInfo] = useState([]);
 	const l_state = props.history.location.state || '';
+	const [databaseSearch, setDatabaseSearch] = useState([]);
 
 
 	useEffect(() => {	
@@ -153,6 +120,19 @@ export default function Game(props) {
 		}
 		gameInfo();
 
+		
+		const dbSearch = async () => {
+			await fetch(`http://localhost:8888/api/v1/games?title=${l_state.game_title}`)
+			.then((response) => response.json())
+			.then((data) => {
+				setDatabaseSearch(data);
+			})
+			.catch((error) => {
+				console.error('Error:', error);
+			});
+		}
+		dbSearch();
+
 	}, []);
 
 
@@ -164,15 +144,17 @@ export default function Game(props) {
 				<h1>IN A BUNDLE?</h1>
 			</TopbarInput>
 
-			<BundleSection>
-				<BundleHeader>
-					<h1 id='game-name'>{l_state.game_title}</h1>
-					<h1>was in a bundle! <Emoji symbol='🙂' label='smile'/></h1>
-				</BundleHeader>
-
-				<p id='bundle-name'>ASDSADAS BUNDLE</p>
-				<p id='bundle-date'>20.04.2019 - 28.04.2019</p>
-			</BundleSection>
+			{
+				databaseSearch.length > 0 ?
+					<Bundled
+						title={l_state.game_title}
+						info={databaseSearch}
+					/>
+				:
+					<NotBundled
+						title={l_state.game_title}
+					/>
+			}
 			
 			<GameSection>
 				<ImgSlider
