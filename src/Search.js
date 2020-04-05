@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
-import Input from './components/Input';
-import SearchCard from './components/SearchCard';
+import { Input, SearchCard } from './components';
 
 
 const StyledSearch = styled.div`
@@ -58,13 +57,13 @@ const Result = styled.div`
 
 export default function Search(props) {
 	const [gamesSearch, setGamesSearch] = useState([]);
+	const l_state = props.history.location.state || '';
 
 	
 	useEffect(() => {
 		setGamesSearch([]); //by doing this we're hidding old results when we're researching something new and we're waiting for response from API.
 		
-		const ToSearch = async () => {
-			const l_state = props.history.location.state || '';
+		const toSearch = async () => {
 			//Using RAWG API to get information about games
 			await fetch(`https://api.rawg.io/api/games?search=${l_state.game_title}`, {
 				headers: {
@@ -83,7 +82,7 @@ export default function Search(props) {
 				console.error('Error:', error);
 			});
 		}
-		ToSearch();
+		toSearch();
 
 		const nextToSearch = async (nextHref) => {
 			await fetch(`${nextHref}`, {
@@ -100,14 +99,14 @@ export default function Search(props) {
 				/* not good idea for big results like Final Fantasy
 				/* use it with skeleton component
 				if(data.next) {
-					nextToSearch(data.next);
+					nexttoSearch(data.next);
 				}*/
 			})
 			.catch((error) => {
 				console.error('Error:', error);
 			});
 		}
-	}, [props.history.location.state.game_title]);
+	}, [l_state.game_title]);
 
 
 	//TODO: add skeleton component when loading?

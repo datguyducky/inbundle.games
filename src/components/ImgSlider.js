@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 
 
@@ -86,7 +86,7 @@ export default function ImgSlider(props) {
 			document.getElementsByClassName('slide-img')[0].style.display = 'block';
 			document.getElementsByClassName('slide-progress')[0].classList.add('active');
 		}
-	}, []);
+	}, [props.img_list]);
 
 
 	const SliderNextHandler = () => {

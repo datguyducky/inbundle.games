@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Emoji from './Emoji';
+import { Emoji } from './index';
 import {dateConvert} from '../Utils';
 
 

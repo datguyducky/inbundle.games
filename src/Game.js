@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import Input from './components/Input';
-import ImgSlider from './components/ImgSlider';
-import PlatformIcon from './components/PlatformIcon';
-import Bundled from './components/Bundled';
-import NotBundled from './components/NotBundled';
+import { Input, ImgSlider, PlatformIcon, Bundled, NotBundled } from './components';
 
 
 const StyledGame = styled.div`
@@ -133,7 +129,7 @@ export default function Game(props) {
 		}
 		dbSearch();
 
-	}, []);
+	}, [l_state.game_title, l_state.game_id]);
 
 
 	return (

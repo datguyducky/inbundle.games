@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import PlatformIcon from '../components/PlatformIcon';
+import { PlatformIcon } from './index';
 import { withRouter } from 'react-router-dom';
 
 

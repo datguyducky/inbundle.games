@@ -34,6 +34,10 @@ const StyledForm = styled.form`
 		height: 50px;
 		align-items: flex-end;
 		border-bottom: 2px solid currentColor;
+
+		#u-text {
+			color: #fff;
+		}
 	}
 `
 
