@@ -13,7 +13,7 @@ const StyledSearchCard = styled.div`
 
 	#border-elem {
 		position: absolute;
-		border-bottom: 1px solid #222;
+		border-bottom: 1px solid #2a2a2a;
 		width: 92%;
 		bottom: 0;
 		left: 0;

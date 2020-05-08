@@ -50,7 +50,7 @@ const Result = styled.div`
 	width: 640px;
 	display: flex;
 	flex-direction: column;
-	background-color: #111;
+	background-color: #1a1a1a;
 	border-radius: 6px;
 	padding: 12px 16px;
 `

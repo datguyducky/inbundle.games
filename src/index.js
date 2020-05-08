@@ -21,7 +21,7 @@ const IndexWrapper = styled.div`
 const GlobalStyle = createGlobalStyle`
 	html, body {
 		margin: 0;
-		background-color: #000;
+		background-color: #111;
 		color: rgb(${hsvToRgb(0, 0.7, 0.95)});
 		font-family: 'Spartan', sans-serif;
 	}

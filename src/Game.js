@@ -37,7 +37,7 @@ const GameSection = styled.div`
 	display: grid;
 	grid-template-columns: 52% 1fr;
 	margin-top: 6px;
-	background-color: #111;
+	background-color: #1a1a1a;
 	width: 960px;
 	border-radius: 6px;
 `

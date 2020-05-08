@@ -12,6 +12,7 @@ const StyledAbout = styled.div`
 	flex-direction: column;
 	font-size: 16px;
 	flex: 1;
+	background-color: #1a1a1a;
 
 	div {
 		border-left: 2px solid currentColor;

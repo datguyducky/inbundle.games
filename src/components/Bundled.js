@@ -6,7 +6,7 @@ import {dateConvert} from '../Utils';
 
 const BundleSection = styled.div`
 	margin: 24px 0;
-	background-color: #111;
+	background-color: #1a1a1a;
 	width: 928px;
 	text-align: center;
 	padding: 12px 16px;
