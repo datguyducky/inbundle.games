@@ -21,6 +21,10 @@ const StyledForm = styled.form`
 		bottom: 0;
 		right: 0;
 		height: 48px;
+
+		:focus, :active {
+			outline: none;
+		}		
 	}
 
 	label {

@@ -4,14 +4,14 @@ import styled from 'styled-components';
 
 const StyledAbout = styled.div`
 	width: 760px;
-	margin: 0 auto;
+	margin: 21px auto;
 	color: inherit;
-	min-height: 100%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
 	font-size: 16px;
+	flex: 1;
 
 	div {
 		border-left: 2px solid currentColor;
@@ -26,7 +26,6 @@ const StyledAbout = styled.div`
 
 
 export default function About() {
-	// TODO: fix display issues on chrome
 	return (
 		<StyledAbout>
 			<div>

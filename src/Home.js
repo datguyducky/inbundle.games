@@ -6,7 +6,7 @@ import { Input } from './components';
 const StyledHome = styled.div`
 	width: 100%;
 	color: inherit;
-	height: 100%;
+	flex: 1;
 	display: flex;
 	justify-content: center;
 	align-items: center;

@@ -10,7 +10,7 @@ const StyledGame = styled.div`
 	display: flex;
 	align-items: center;
 	flex-direction: column;
-	height: 100%;
+	flex: 1;
 
 	.top-input {
 		font-size: 21px;
