@@ -26,6 +26,7 @@ const StyledAbout = styled.div`
 
 
 export default function About() {
+	// TODO: fix display issues on chrome
 	return (
 		<StyledAbout>
 			<div>

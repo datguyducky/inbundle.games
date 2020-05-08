@@ -79,21 +79,19 @@ const SliderProgress = styled.div`
 
 export default function ImgSlider(props) {
 	let test = 0;
-	
+	let slides = document.getElementsByClassName('slide-img') || '';
+	let bar = document.getElementsByClassName('slide-progress') || '';
 	
 	useEffect(() => {
-		if (props.img_list) {
-			document.getElementsByClassName('slide-img')[0].style.display = 'block';
-			document.getElementsByClassName('slide-progress')[0].classList.add('active');
+		if (props.img_list && slides.length > 0) {
+			slides[0].style.display = 'block';
+			bar[0].classList.add('active');
 		}
 	}, [props.img_list]);
 
 
 	const SliderNextHandler = () => {
-		if(props.img_list) {
-			let slides = document.getElementsByClassName('slide-img');
-			let bar = document.getElementsByClassName('slide-progress');
-			
+		if(props.img_list && slides.length > 0) {
 			if (test >= slides.length - 1) {
 				test = 0;
 				
@@ -117,7 +115,7 @@ export default function ImgSlider(props) {
 
 	
 	const SliderBackHandler = () => {
-		if(props.img_list) {
+		if(props.img_list && slides.length > 0) {
 			let slides = document.getElementsByClassName('slide-img');
 			let bar = document.getElementsByClassName('slide-progress');
 			

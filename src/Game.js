@@ -239,7 +239,7 @@ export default function Game(props) {
 							<span className='detailsQ'>Website:</span>
 							<a href={gameInfo.website} className='detailsA'>
 								{
-									gameInfo.developers ? 
+									gameInfo.developers && gameInfo.developers.length > 0 ? 
 										gameInfo.developers[0].name
 									: null
 								}
