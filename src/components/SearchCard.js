@@ -62,6 +62,8 @@ function SearchCard(props) {
 
 
 	const clickHandler = () => {
+		// by clicking on game card we're moved to game route
+
 		props.history.push({
 			pathname: '/game',
 			state: {
@@ -81,7 +83,7 @@ function SearchCard(props) {
 			<GameInfo>
 				<PlatformsWrapper>
 					{
-						//displaying max 5 platforms
+						// displaying max 5 platforms
 						platforms.map((e, i) =>
 							i <= 5 ?
 								<PlatformIcon
@@ -92,7 +94,7 @@ function SearchCard(props) {
 						)
 					}
 					{
-						//for more than 5 platforms we're displaying how much more there's left
+						// for more than 5 platforms we're displaying how much more there's left
 						platforms.length > 5 ?
 							<span style={{fontSize: 12}}>+{platforms.length - 5}</span>
 						: null

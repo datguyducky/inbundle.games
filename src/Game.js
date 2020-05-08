@@ -100,7 +100,7 @@ export default function Game(props) {
 
 	useEffect(() => {	
 		const gameInfo = async () => {
-			//Using RAWG API to get information about games
+			// Using RAWG API to get information about games
 			await fetch(`https://api.rawg.io/api/games/${l_state.game_id}`, {
 				headers: {
 					'User-Agent': 'bundle'
@@ -109,22 +109,28 @@ export default function Game(props) {
 			.then((response) => response.json())
 			.then((data) => {
 				setGameInfo(data);
+				
 			})
 			.catch((error) => {
 				console.error('Error:', error);
+				
 			});
 		}
 		gameInfo();
 
 		
+		// send request to backend to search postgress database for a game that user typed in input
 		const dbSearch = async () => {
 			await fetch(`http://localhost:8888/api/v1/games?title=${l_state.game_title}`)
 			.then((response) => response.json())
 			.then((data) => {
+				// save response from backend
 				setDatabaseSearch(data);
+
 			})
 			.catch((error) => {
 				console.error('Error:', error);
+
 			});
 		}
 		dbSearch();

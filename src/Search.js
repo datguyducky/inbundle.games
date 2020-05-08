@@ -62,10 +62,12 @@ export default function Search(props) {
 
 	
 	useEffect(() => {
-		setGamesSearch([]); //by doing this we're hidding old results when we're researching something new and we're waiting for response from API.
+		// by doing this we're hidding old results when we're researching something new 
+		// and we're waiting for response from API.
+		setGamesSearch([]); 
 		
 		const toSearch = async () => {
-			//Using RAWG API to get information about games
+			// Using RAWG API to get information about games
 			await fetch(`https://api.rawg.io/api/games?search=${l_state.game_title}`, {
 				headers: {
 					'User-Agent': 'bundle'
@@ -75,6 +77,7 @@ export default function Search(props) {
 			.then((data) => {
 				setGamesSearch(data.results);
 
+				// send another request if there's another page of games
 				if(data.next) {
 					nextToSearch(data.next);
 				}
@@ -86,6 +89,7 @@ export default function Search(props) {
 		toSearch();
 
 		const nextToSearch = async (nextHref) => {
+			// send USER-AGENT header as requested in terms of use in RAWG API
 			await fetch(`${nextHref}`, {
 				headers: {
 					'User-Agent': 'bundle'
@@ -97,7 +101,7 @@ export default function Search(props) {
 					return [...prevState, ...data.results]
 				})
 
-				/* not good idea for big results like Final Fantasy
+				// not good idea for big results like Final Fantasy
 				/* use it with skeleton component
 				if(data.next) {
 					nexttoSearch(data.next);

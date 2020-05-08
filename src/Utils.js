@@ -2,12 +2,15 @@ export const hsvToRgb = (h, s, v) => {
 	var r, g, b;
 	var golden_ratio_conjugate = 0.618033988749895;
 	
+
 	if(h === 0) {
 		h = Math.random();
 	}
 
+
 	h += golden_ratio_conjugate;
 	h %= 1;
+
 
 	var i = Math.floor(h * 6);
 	var f = h * 6 - i;
@@ -26,21 +29,28 @@ export const hsvToRgb = (h, s, v) => {
 		default:
 	}
   
+	
 	return [ Math.round(r * 255) +',' + Math.round(g * 255) + ',' + Math.round(b * 255) ];
 }
 
 export const dateConvert = (timestamp) => {
+	// function to convert EPOCH timestamp to human-readable date
 	let d = new Date(timestamp);
 
+
 	let dd = d.getDate();
+	// displaying 0 infront of a day < 10
 	if(dd < 10) {
 		dd = `0${dd}`;
 	}
 
+
 	let mm = d.getMonth() + 1;
+	// displaying 0 infront of a month < 10
 	if(mm < 10) {
 		mm = `0${mm}`;
 	}
+
 
 	return dd + '-' + mm + '-' + d.getFullYear();
 }

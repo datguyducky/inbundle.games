@@ -78,7 +78,9 @@ const SliderProgress = styled.div`
 
 
 export default function ImgSlider(props) {
-	let test = 0;
+	// currently displayed slide
+	let arrNum = 0;
+	// array of images for slider
 	let slides = document.getElementsByClassName('slide-img') || '';
 	let bar = document.getElementsByClassName('slide-progress') || '';
 	
@@ -87,29 +89,29 @@ export default function ImgSlider(props) {
 			slides[0].style.display = 'block';
 			bar[0].classList.add('active');
 		}
-	}, [props.img_list]);
+	}, [props.img_list, slides, bar]);
 
 
 	const SliderNextHandler = () => {
 		if(props.img_list && slides.length > 0) {
-			if (test >= slides.length - 1) {
-				test = 0;
+			if (arrNum >= slides.length - 1) {
+				arrNum = 0;
 				
 				slides[slides.length - 1].style.display = 'none';
-				slides[test].style.display = 'block';
+				slides[arrNum].style.display = 'block';
 				
 				bar[slides.length - 1].classList.remove('active');
-				bar[test].classList.add('active');
+				bar[arrNum].classList.add('active');
 				
 				return;
 			}
 			
-			slides[test].style.display = 'none';
-			slides[test + 1].style.display = 'block';
-			bar[test].classList.remove('active');
-			bar[test + 1].classList.add('active');
+			slides[arrNum].style.display = 'none';
+			slides[arrNum + 1].style.display = 'block';
+			bar[arrNum].classList.remove('active');
+			bar[arrNum + 1].classList.add('active');
 			
-			test += 1;
+			arrNum += 1;
 		}
 	}
 
@@ -119,25 +121,39 @@ export default function ImgSlider(props) {
 			let slides = document.getElementsByClassName('slide-img');
 			let bar = document.getElementsByClassName('slide-progress');
 			
-			if (test === 0) {
-				slides[test].style.display = 'none';
+			// if first image is currently displayed, then go back to the last one
+			if (arrNum === 0) {
+				// hide image
+				slides[arrNum].style.display = 'none';
+				// display new
 				slides[slides.length - 1].style.display = 'block';
 				
-				bar[test].classList.remove('active');
+				
+				// remove active class from progress bar
+				bar[arrNum].classList.remove('active');
+				// set active class to new progress bar
 				bar[slides.length - 1].classList.add('active');
 				
-				test = slides.length - 1;
+
+				// set num for currently displayed image
+				arrNum = slides.length - 1;	
+
+			} else {
+				// hide image
+				slides[arrNum].style.display = 'none'
+				// display new
+				slides[arrNum - 1].style.display = 'block';
 				
-				return;
+
+				// remove active class from progress bar
+				bar[arrNum].classList.remove('active');
+				// set active class to new progress bar
+				bar[arrNum - 1].classList.add('active');
+
+				
+				// set num for currently displayed image
+				arrNum -= 1;
 			}
-
-			slides[test].style.display = 'none'
-			slides[test - 1].style.display = 'block';
-			
-			bar[test].classList.remove('active');
-			bar[test - 1].classList.add('active');
-
-			test -= 1;
 		}
 	}
 	
