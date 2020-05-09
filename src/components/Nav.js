@@ -5,10 +5,13 @@ import { Link, useLocation } from 'react-router-dom';
 
 const StyledNav = styled.nav`
 	display: flex;
-	justify-content: flex-end;
 	align-items: center;
-	margin-right: 1em;
-	text-transform: uppercase;
+	padding: 0 2em;
+
+	h1 {
+		color: #fff;
+		font-size: 24px;
+	}
 
 	a {
 		color: inherit;
@@ -20,8 +23,10 @@ const StyledNav = styled.nav`
 	}
 
 	ul {
+		text-transform: uppercase;
 		list-style: none;
 		display: flex;
+		margin-left: auto;
 
 		li:first-of-type {
 			margin-right: 1em;
@@ -35,6 +40,7 @@ export default function Nav() {
 
 	return (
 		<StyledNav>
+			<h1>bundle.games</h1>
 			<ul>
 				<li>
 					{
