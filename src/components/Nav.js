@@ -16,10 +16,6 @@ const StyledNav = styled.nav`
 	a {
 		color: inherit;
 		text-decoration: none;
-
-		:hover {
-			text-decoration: underline;
-		}
 	}
 
 	ul {
@@ -31,6 +27,10 @@ const StyledNav = styled.nav`
 		li:first-of-type {
 			margin-right: 1em;
 		}
+
+		a:hover {
+			text-decoration: underline;
+		}
 	}
 `
 
@@ -40,7 +40,7 @@ export default function Nav() {
 
 	return (
 		<StyledNav>
-			<h1>bundle.games</h1>
+			<h1><Link to="/">bundle.games</Link></h1>
 			<ul>
 				<li>
 					{
@@ -50,7 +50,7 @@ export default function Nav() {
 							<Link to='/about'>ABOUT</Link>
 					}
 				</li>
-				<li><a href='https://github.com/datguysheepy'>GITHUB</a></li>
+				<li><a href='https://github.com/datguysheepy/bundle.games'>GITHUB</a></li>
 			</ul>
 		</StyledNav>
 	)
