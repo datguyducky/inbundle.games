@@ -7,8 +7,10 @@ const StyledFooter = styled.footer`
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	padding: 0 24px;
 	padding-bottom: 16px;
 	flex-direction: column;
+	text-align: center;
 
 	#md-span {
 		color: #fff;

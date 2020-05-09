@@ -23,13 +23,28 @@ const StyledNav = styled.nav`
 		list-style: none;
 		display: flex;
 		margin-left: auto;
-
+	
 		li:first-of-type {
 			margin-right: 1em;
 		}
-
+	
 		a:hover {
 			text-decoration: underline;
+		}
+	
+		@media (max-width: 520px) {
+			margin: 0;
+			padding: 0;
+			width: 185.9px;
+			justify-content: center;
+		}
+	}
+
+	@media (max-width: 520px) {
+		flex-direction: column;
+
+		h1 {
+			margin-bottom: 6px;
 		}
 	}
 `
@@ -41,6 +56,7 @@ export default function Nav() {
 	return (
 		<StyledNav>
 			<h1><Link to="/">bundle.games</Link></h1>
+			
 			<ul>
 				<li>
 					{
@@ -50,7 +66,10 @@ export default function Nav() {
 							<Link to='/about'>ABOUT</Link>
 					}
 				</li>
-				<li><a href='https://github.com/datguysheepy/bundle.games'>GITHUB</a></li>
+				
+				<li>
+					<a href='https://github.com/datguysheepy/bundle.games'>GITHUB</a>
+				</li>
 			</ul>
 		</StyledNav>
 	)

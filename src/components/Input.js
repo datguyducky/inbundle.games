@@ -24,7 +24,21 @@ const StyledForm = styled.form`
 
 		:focus, :active {
 			outline: none;
-		}		
+		}
+		
+		@media (max-width: 960px) {
+			font-size: 24px;
+			height: 28px;
+		}
+
+		@media (max-width: 560px) {
+			width: 310px;
+		}
+
+		@media (max-width: 380px) {
+			font-size: 18px;
+			height: 22px;
+		}
 	}
 
 	label {
@@ -38,10 +52,25 @@ const StyledForm = styled.form`
 		height: 50px;
 		align-items: flex-end;
 		border-bottom: 2px solid currentColor;
+		overflow: hidden;
 
 		#u-text {
 			color: #fff;
 		}
+
+		@media (max-width: 960px) {
+			font-size: 24px;
+			height: 30px;
+		}
+
+		@media (max-width: 560px) {
+			width: 310px;
+		}
+
+		@media (max-width: 380px) {
+			font-size: 18px;
+			height: 24px;
+		}	
 	}
 `
 
