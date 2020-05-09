@@ -15,6 +15,7 @@ const ContentWrapper = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	margin: 32px 0;
 
 	h1 {
 		font-size: 62px;

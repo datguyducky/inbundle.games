@@ -54,7 +54,10 @@ const TopbarInput = styled.div`
 		margin-top: 24px;
 		flex-wrap: wrap;
 		justify-content: center;
+	}
 
+	@media (max-width: 520px) {
+		animation: none;
 	}
 `
 const Result = styled.div`
