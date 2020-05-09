@@ -5,6 +5,8 @@ import { withRouter } from 'react-router-dom';
 
 
 const StyledForm = styled.form`
+	margin: 12px 0;
+
 	input {
 		padding: 0;
 		background-color: transparent;
@@ -32,7 +34,7 @@ const StyledForm = styled.form`
 		}
 
 		@media (max-width: 560px) {
-			width: 310px;
+			width: 240px;
 		}
 
 		@media (max-width: 380px) {
@@ -46,7 +48,7 @@ const StyledForm = styled.form`
 		width: 480px;
 		display: block;
 		display: flex;
-		margin: 0 1em;
+		margin: 0 16px;
 		font-size: 44px;
 		font-weight: 400;
 		height: 50px;
@@ -64,7 +66,7 @@ const StyledForm = styled.form`
 		}
 
 		@media (max-width: 560px) {
-			width: 310px;
+			width: 240px;
 		}
 
 		@media (max-width: 380px) {

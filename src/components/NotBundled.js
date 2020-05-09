@@ -10,6 +10,10 @@ const BundleSection = styled.div`
 	text-align: center;
 	padding: 12px 16px;
 	border-radius: 6px;
+
+	@media (max-width: 980px) {
+		width: 91%;
+	}
 `
 const BundleHeader = styled.div`
 	display: flex;
@@ -20,6 +24,10 @@ const BundleHeader = styled.div`
 		font-size: 28px;
 		margin: 0;
 		font-weight: normal;
+
+		@media (max-width: 480px) {
+			font-size: 21px;
+		}
 	}
 
 	#game-name {

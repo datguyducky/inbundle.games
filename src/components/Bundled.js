@@ -27,6 +27,10 @@ const BundleSection = styled.div`
 		font-size: 14px;
 		color: #fff;
 	}
+
+	@media (max-width: 980px) {
+		width: 91%;
+	}
 `
 const BundleHeader = styled.div`
 	display: flex;

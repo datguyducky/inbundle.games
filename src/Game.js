@@ -15,13 +15,17 @@ const StyledGame = styled.div`
 	.top-input {
 		font-size: 21px;
 		height: 27px;
-		width: 320px;
+		width: 260px;
 
 		input {
 			font-size: 21px;
 			height: 25px;
-			width: 320px;
+			width: 260px;
 		}
+	}
+
+	@media (max-width: 980px) {
+		width: 96%;
 	}
 `
 const TopbarInput = styled.div`
@@ -31,6 +35,14 @@ const TopbarInput = styled.div`
 
 	h1 {
 		font-size: 21px;
+		margin: 0;
+	}
+
+	@media (max-width: 1240px) {
+		margin-top: 24px;
+		flex-wrap: wrap;
+		justify-content: center;
+
 	}
 `
 const GameSection = styled.div`
@@ -40,6 +52,16 @@ const GameSection = styled.div`
 	background-color: #1a1a1a;
 	width: 960px;
 	border-radius: 6px;
+
+	@media (max-width: 980px) {
+		width: 96%;
+	}
+
+	@media (max-width: 720px) {
+		display: flex;
+		flex-direction: column;
+		margin-bottom: 30px;
+	}
 `
 const GameDetails = styled.div`
 	display: flex;

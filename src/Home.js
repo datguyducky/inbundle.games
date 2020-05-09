@@ -19,6 +19,7 @@ const ContentWrapper = styled.div`
 	h1 {
 		font-size: 62px;
 		font-weight: 600;
+		margin: 0;
 
 		@media (max-width: 960px) {
 			font-size: 32px;
@@ -32,10 +33,6 @@ const ContentWrapper = styled.div`
 	@media (max-width: 1240px) {
 		flex-wrap: wrap;
 		padding: 0 24px;
-		
-		h1 {
-			margin: 16px;
-		}
 	}
 `
 

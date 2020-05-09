@@ -4,7 +4,17 @@ import styled from 'styled-components';
 
 const StyledImgSlider = styled.div`
 	position: relative;
+	
+	@media (max-width: 720px) {
+		width: 420px;
+		height: 280px;
+		margin: 0 auto;
+	}
 
+	@media (max-width: 480px) {
+		width: 280px;
+		height: 160px;
+	}
 `
 const Screenshot = styled.div`
 	background-image: url('${props => props.url}');
@@ -16,6 +26,10 @@ const Screenshot = styled.div`
 	border-top-left-radius: 6px;
 	border-bottom-left-radius: 6px;
 	display: none;
+
+	@media (max-width: 720px) {
+		border-radius: 6px;
+	}
 `
 const SliderArrowLeft = styled.div`
 	position: absolute;
@@ -169,6 +183,7 @@ export default function ImgSlider(props) {
 								url={e.image}
 								key={i}
 								className='slide-img'
+								onClick={SliderNextHandler}
 							/>
 						: null
 					)

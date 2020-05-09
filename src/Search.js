@@ -15,13 +15,17 @@ const StyledSearch = styled.div`
 	.top-input {
 		font-size: 21px;
 		height: 27px;
-		width: 320px;
+		width: 260px;
 
 		input {
 			font-size: 21px;
 			height: 25px;
-			width: 320px;
+			width: 260px;
 		}
+	}
+
+	@media (max-width: 980px) {
+		width: 90%;
 	}
 `
 const TopbarInputAnim = keyframes`
@@ -43,6 +47,14 @@ const TopbarInput = styled.div`
 
 	h1 {
 		font-size: 21px;
+		margin: 0;
+	}
+
+	@media (max-width: 1240px) {
+		margin-top: 24px;
+		flex-wrap: wrap;
+		justify-content: center;
+
 	}
 `
 const Result = styled.div`
@@ -53,6 +65,10 @@ const Result = styled.div`
 	background-color: #1a1a1a;
 	border-radius: 6px;
 	padding: 12px 16px;
+
+	@media (max-width: 980px) {
+		width: 90%;
+	}
 `
 
 
