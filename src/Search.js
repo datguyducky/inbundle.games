@@ -89,7 +89,7 @@ export default function Search(props) {
 			// Using RAWG API to get information about games
 			await fetch(`https://api.rawg.io/api/games?search=${l_state.game_title}`, {
 				headers: {
-					'User-Agent': 'bundle'
+					'User-Agent': 'inbundle.games'
 				}	
 			})
 			.then((response) => response.json())
@@ -111,7 +111,7 @@ export default function Search(props) {
 			// send USER-AGENT header as requested in terms of use in RAWG API
 			await fetch(`${nextHref}`, {
 				headers: {
-					'User-Agent': 'bundle'
+					'User-Agent': 'inbundle.games'
 				}	
 			})
 			.then((response) => response.json())

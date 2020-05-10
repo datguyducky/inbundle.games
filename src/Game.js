@@ -125,7 +125,7 @@ export default function Game(props) {
 			// Using RAWG API to get information about games
 			await fetch(`https://api.rawg.io/api/games/${l_state.game_id}`, {
 				headers: {
-					'User-Agent': 'bundle'
+					'User-Agent': 'inbundle.games'
 				}	
 			})
 			.then((response) => response.json())
