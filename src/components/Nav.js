@@ -55,7 +55,7 @@ export default function Nav() {
 
 	return (
 		<StyledNav>
-			<h1><Link to="/">bundle.games</Link></h1>
+			<h1><Link to="/">inbundle.games</Link></h1>
 			
 			<ul>
 				<li>
@@ -68,7 +68,7 @@ export default function Nav() {
 				</li>
 				
 				<li>
-					<a href='https://github.com/datguysheepy/bundle.games'>GITHUB</a>
+					<a href='https://github.com/datguysheepy/inbundle.games'>GITHUB</a>
 				</li>
 			</ul>
 		</StyledNav>

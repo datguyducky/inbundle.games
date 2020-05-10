@@ -51,7 +51,7 @@ export default function Footer() {
 				</p>
 				
 				<p id="source-info"> 
-					BUNDLE.GAMES uses <a href="https://rawg.io/apidocs">RAWG database API</a> to display game details and screenshots.
+					INBUNDLE.GAMES uses <a href="https://rawg.io/apidocs">RAWG database API</a> to display game details and screenshots.
 				</p>
 		</StyledFooter>
 	)
