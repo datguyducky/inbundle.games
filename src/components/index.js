@@ -7,6 +7,7 @@ import ImgSlider from './ImgSlider';
 import NotBundled from './NotBundled';
 import PlatformIcon from './PlatformIcon';
 import SearchCard from './SearchCard';
+import BundleCard from './BundleCard';
 
 
 export {
@@ -18,5 +19,6 @@ export {
 	ImgSlider,
 	NotBundled,
 	PlatformIcon,
-	SearchCard
+	SearchCard,
+	BundleCard
 }

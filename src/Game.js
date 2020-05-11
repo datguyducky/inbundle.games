@@ -143,7 +143,7 @@ export default function Game(props) {
 		
 		// send request to backend to search postgress database for a game that user typed in input
 		const dbSearch = async () => {
-			await fetch(`http://localhost:8888/api/v1/games?title=${l_state.game_title}`)
+			await fetch(`http://localhost:8888/api/v1/games?title=${l_state.game_title.toUpperCase()}`)
 			.then((response) => response.json())
 			.then((data) => {
 				// save response from backend

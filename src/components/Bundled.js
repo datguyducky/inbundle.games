@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Emoji } from './index';
-import {dateConvert} from '../Utils';
+import { Emoji, BundleCard } from './index';
 
 
 const BundleSection = styled.div`
@@ -12,22 +11,6 @@ const BundleSection = styled.div`
 	padding: 12px 16px;
 	border-radius: 6px;
 
-	p {
-		margin: 0;
-	}
-
-	#bundle-name {
-		font-size: 18px;
-		letter-spacing: 2px;
-		font-weight: bold;
-		margin: 2px 0;
-	}
-
-	#bundle-date {
-		font-size: 14px;
-		color: #fff;
-	}
-
 	@media (max-width: 980px) {
 		width: 91%;
 	}
@@ -36,6 +19,7 @@ const BundleHeader = styled.div`
 	display: flex;
 	justify-content: center;
 	flex-wrap: wrap;
+	margin-bottom: 12px;
 
 	h1 {
 		font-size: 28px;
@@ -48,26 +32,48 @@ const BundleHeader = styled.div`
 		margin: 0 6px;
 	}
 `
+const BundleNum = styled.span`
+	margin: 0 8px;
+`
+const BundleList = styled.ul`
+	display: grid;
+	grid-row-gap: 8px;
+	margin: 0;
+	padding: 0;
+`
+
 
 
 export default function Bundled(props) {
-	//TODO: currently is only displaying information about first bundle that game was in. Make it working for other bundles
-	const bundle_start = parseInt(props.info[0].date_start) * 1000;
-	const bundle_end = parseInt(props.info[0].date_end) * 1000;
-	const bundle_name = props.info[0].name;
-
-
 	return (
 		<BundleSection>
 				<BundleHeader>
 					<h1 id='game-name'>{props.title}</h1>
-					<h1>was in a bundle! <Emoji symbol='🙂' label='smile'/></h1>
-				</BundleHeader>
+					<h1>
+						<BundleNum>
+							{
+								props.info.length <= 1
+								? 'was in a bundle!'
+								: `was in a ${props.info.length} bundles:`
+							}
+						</BundleNum>
 
-				<p id='bundle-name'>{bundle_name}</p>
-				<p id='bundle-date'>
-					from {dateConvert(bundle_start)} to {dateConvert(bundle_end)}
-				</p>
+						<Emoji symbol='🙂' label='smile'/>
+					</h1>
+				</BundleHeader>
+				
+				<BundleList>
+					{
+						props.info.map((e, i) => 
+							<BundleCard
+								key={i}
+								bundle_name={e.name}
+								bundle_start={parseInt(e.date_start) * 1000}
+								bundle_end={parseInt(e.date_end) * 1000}
+							/>
+						)
+					}
+				</BundleList>
 		</BundleSection>
 	)
 }
