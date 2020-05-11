@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { Input, SearchCard } from './components';
+import Loader from 'react-loader-spinner';
 
 
 const StyledSearch = styled.div`
@@ -11,6 +12,10 @@ const StyledSearch = styled.div`
 	align-items: center;
 	flex-direction: column;
 	flex: 1;
+
+	.loader {
+		margin: 21px 0;
+	}
 
 	.top-input {
 		font-size: 21px;
@@ -30,19 +35,17 @@ const StyledSearch = styled.div`
 `
 const TopbarInputAnim = keyframes`
 	0% {
-		top: 160px;
-		transform: scale(2);
+		top: -80px;
 	}
 	
 	100% {
 		top: 0;
-		transform: scale(1);
 	}
 `
 const TopbarInput = styled.div`
 	display: flex;
 	align-items: center;
-	animation: ${TopbarInputAnim} ease-out .6s;
+	animation: ${TopbarInputAnim} ease-out .4s;
 	position: relative;
 
 	h1 {
@@ -73,9 +76,15 @@ const Result = styled.div`
 		width: 90%;
 	}
 `
+const NoResult = styled.p`
+	color: #fff;
+	font-size: 18px;
+	text-align: center;
+`
 
 
 export default function Search(props) {
+	const [loading, setLoading] = useState(true);
 	const [gamesSearch, setGamesSearch] = useState([]);
 	const l_state = props.history.location.state || '';
 
@@ -95,7 +104,7 @@ export default function Search(props) {
 			.then((response) => response.json())
 			.then((data) => {
 				setGamesSearch(data.results);
-
+				setLoading(false);
 				// send another request if there's another page of games
 				if(data.next) {
 					nextToSearch(data.next);
@@ -121,7 +130,7 @@ export default function Search(props) {
 				})
 
 				// not good idea for big results like Final Fantasy
-				/* use it with skeleton component
+				/* fetch and then show another results only when user scrolls to bottom of a page
 				if(data.next) {
 					nexttoSearch(data.next);
 				}*/
@@ -143,22 +152,36 @@ export default function Search(props) {
 			</TopbarInput>
 
 			{
-				gamesSearch.length > 0 ?
-					<Result>
-					{
-						gamesSearch.map((e, i) => 
-							<SearchCard
-								game_title={e.name}
-								game_cover={e.background_image}
-								platforms={e.platforms}
-								game_id={e.id}
-								game_screenshots={e.short_screenshots}
-								key={i} 
-							/>
-						)
-					}
-					</Result>
-				: null
+				loading ?
+					<Loader
+						className="loader"
+						type="TailSpin"
+						color="#fff"
+						height={42}
+						width={200}
+						timeout={2500}
+					/>
+				:
+					gamesSearch.length > 0 ?
+						<Result>
+						{
+							gamesSearch.map((e, i) => 
+								<SearchCard
+									game_title={e.name}
+									game_cover={e.background_image}
+									platforms={e.platforms}
+									game_id={e.id}
+									game_screenshots={e.short_screenshots}
+									key={i} 
+								/>
+							)
+						}
+						</Result>
+					: !loading ?
+						<NoResult>
+							Sorry, we couldn't find what you were looking for.
+						</NoResult>
+					: null
 			}
 		</StyledSearch>
 	)

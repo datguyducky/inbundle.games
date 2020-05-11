@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Input, ImgSlider, PlatformIcon, Bundled, NotBundled } from './components';
+import Loader from 'react-loader-spinner';
 
 
 const StyledGame = styled.div`
@@ -115,6 +116,7 @@ const GameDetails = styled.div`
 
 
 export default function Game(props) {
+	const [loading, setLoading] = useState(true);
 	const [gameInfo, setGameInfo] = useState([]);
 	const l_state = props.history.location.state || '';
 	const [databaseSearch, setDatabaseSearch] = useState([]);
@@ -131,7 +133,7 @@ export default function Game(props) {
 			.then((response) => response.json())
 			.then((data) => {
 				setGameInfo(data);
-				
+				setLoading(false);
 			})
 			.catch((error) => {
 				console.error('Error:', error);
@@ -142,6 +144,7 @@ export default function Game(props) {
 
 		
 		// send request to backend to search postgress database for a game that user typed in input
+		// change whole game title to UPPERCASE to get rid of formatting problems in database <-> API
 		const dbSearch = async () => {
 			await fetch(`http://localhost:8888/api/v1/games?title=${l_state.game_title.toUpperCase()}`)
 			.then((response) => response.json())
@@ -180,115 +183,127 @@ export default function Game(props) {
 					/>
 			}
 			
-			<GameSection>
-				<ImgSlider
-					img_list={l_state.game_screenshots}
-				/>
+			{
+				loading ?
+					<Loader
+						className="loader"
+						type="TailSpin"
+						color="#fff"
+						height={42}
+						width={200}
+						timeout={2500}
+					/>
+				:
+					<GameSection>
+						<ImgSlider
+							img_list={l_state.game_screenshots}
+						/>
 
-				<GameDetails>
-					<h1>GAME DETAILS:</h1>
+						<GameDetails>
+							<h1>GAME DETAILS:</h1>
 
-					<section>
-						<div>
-							<span className='detailsQ'>Release date:</span>
-							<span className='detailsA'>{gameInfo.released}</span>
-						</div>
-						
-						<div>
-							<span className='detailsQ'>Publisher:</span>
-							<span className='detailsA'>
-								{
-									gameInfo.publishers && gameInfo.publishers.length > 0 ? 
-										gameInfo.publishers[0].name
-									: null
-								}
-							</span>
-						</div>
-						
-						<div>
-							<span className='detailsQ'>Developer:</span>
-							<span className='detailsA'>
-								{
-									gameInfo.developers && gameInfo.developers.length > 0 ? 
-										gameInfo.developers[0].name
-									: null
-								}
-							</span>
-						</div>
-					</section>
-
-					<section>
-						<div>
-							<span className='detailsQ'>Platforms:</span>
-							<span className='detailsA'> 
-							{
-								//displaying max 5 platforms
-								gameInfo.platforms ? 
-									gameInfo.platforms.map((e, i) =>
-											i <= 5 ?
-												<PlatformIcon
-													name={e.platform.name}
-													key={i}
-												/>
+							<section>
+								<div>
+									<span className='detailsQ'>Release date:</span>
+									<span className='detailsA'>{gameInfo.released}</span>
+								</div>
+								
+								<div>
+									<span className='detailsQ'>Publisher:</span>
+									<span className='detailsA'>
+										{
+											gameInfo.publishers && gameInfo.publishers.length > 0 ? 
+												gameInfo.publishers[0].name
 											: null
-									)
-								: null
-							}
-							{
-								//for more than 5 platforms we're displaying how much more there's left
-								gameInfo.platforms ? 
-									gameInfo.platforms.length > 5 ?
-										<span style={{fontSize: 12}}>+{gameInfo.platforms.length - 5}</span>
-									: null
-								: null
-							}
-							</span>
-						</div>
+										}
+									</span>
+								</div>
+								
+								<div>
+									<span className='detailsQ'>Developer:</span>
+									<span className='detailsA'>
+										{
+											gameInfo.developers && gameInfo.developers.length > 0 ? 
+												gameInfo.developers[0].name
+											: null
+										}
+									</span>
+								</div>
+							</section>
 
-						<div>
-							<span className='detailsQ'>Genres:</span>
-							<span className='detailsA'>
-								{
-									gameInfo.genres ? 
-										gameInfo.genres.map((e, i) => 
-											gameInfo.genres.length > 1 ?
-												<span key={i}>{e.name}, </span>
-											: 
-												<span key={i}>{e.name} </span>
-										)
-									: null
-								}
-							</span>
-						</div>
-					</section>
+							<section>
+								<div>
+									<span className='detailsQ'>Platforms:</span>
+									<span className='detailsA'> 
+									{
+										//displaying max 5 platforms
+										gameInfo.platforms ? 
+											gameInfo.platforms.map((e, i) =>
+													i <= 5 ?
+														<PlatformIcon
+															name={e.platform.name}
+															key={i}
+														/>
+													: null
+											)
+										: null
+									}
+									{
+										//for more than 5 platforms we're displaying how much more there's left
+										gameInfo.platforms ? 
+											gameInfo.platforms.length > 5 ?
+												<span style={{fontSize: 12}}>+{gameInfo.platforms.length - 5}</span>
+											: null
+										: null
+									}
+									</span>
+								</div>
 
-					<section>
-						<div>
-							<span className='detailsQ'>Website:</span>
-							<a href={gameInfo.website} className='detailsA'>
-								{
-									gameInfo.developers && gameInfo.developers.length > 0 ? 
-										gameInfo.developers[0].name
-									: null
-								}
-							</a>
-						</div>
-						
-						<div>
-							<span className='detailsQ'>Stores:</span>
-							<span className='detailsA'>
-								{
-									gameInfo.stores ? 
-										gameInfo.stores.map((e, i) => 
-											<a key={i} href={e.url}>{e.store.name}</a>
-										)
-									: null
-								}
-							</span>
-						</div>
-					</section>
-				</GameDetails>
-			</GameSection>
+								<div>
+									<span className='detailsQ'>Genres:</span>
+									<span className='detailsA'>
+										{
+											gameInfo.genres ? 
+												gameInfo.genres.map((e, i) => 
+													gameInfo.genres.length > 1 ?
+														<span key={i}>{e.name}, </span>
+													: 
+														<span key={i}>{e.name} </span>
+												)
+											: null
+										}
+									</span>
+								</div>
+							</section>
+
+							<section>
+								<div>
+									<span className='detailsQ'>Website:</span>
+									<a href={gameInfo.website} className='detailsA'>
+										{
+											gameInfo.developers && gameInfo.developers.length > 0 ? 
+												gameInfo.developers[0].name
+											: null
+										}
+									</a>
+								</div>
+								
+								<div>
+									<span className='detailsQ'>Stores:</span>
+									<span className='detailsA'>
+										{
+											gameInfo.stores ? 
+												gameInfo.stores.map((e, i) => 
+													<a key={i} href={e.url}>{e.store.name}</a>
+												)
+											: null
+										}
+									</span>
+								</div>
+							</section>
+						</GameDetails>
+					</GameSection>
+				}
 		</StyledGame>
 	)
 }
