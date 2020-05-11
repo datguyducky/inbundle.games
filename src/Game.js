@@ -146,7 +146,12 @@ export default function Game(props) {
 		// send request to backend to search postgress database for a game that user typed in input
 		// change whole game title to UPPERCASE to get rid of formatting problems in database <-> API
 		const dbSearch = async () => {
-			await fetch(`http://localhost:8888/api/v1/games?title=${l_state.game_title.toUpperCase()}`)
+			const BACKEND_URL = window.location.href.includes('localhost')
+			? 'http://localhost:8888' // for development
+			: 'https://db.inbundle.games' // for production
+
+
+			await fetch(`${BACKEND_URL}/api/v1/games?title=${l_state.game_title.toUpperCase()}`)
 			.then((response) => response.json())
 			.then((data) => {
 				// save response from backend
