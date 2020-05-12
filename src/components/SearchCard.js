@@ -66,12 +66,7 @@ function SearchCard(props) {
 
 		props.history.push({
 			pathname: '/game',
-			state: {
-				game_title: props.game_title,
-				game_id: props.game_id,
-				game_screenshots: props.game_screenshots
-			},
-			search:	`?title=${props.game_title}`
+			search:	`?title=${props.game_title}&id=${props.game_id}`
 		})
 	}
 

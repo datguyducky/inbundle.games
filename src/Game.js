@@ -118,14 +118,17 @@ const GameDetails = styled.div`
 export default function Game(props) {
 	const [loading, setLoading] = useState(true);
 	const [gameInfo, setGameInfo] = useState([]);
-	const l_state = props.history.location.state || '';
+	const [gameImg, setGameImg] = useState([]);
 	const [databaseSearch, setDatabaseSearch] = useState([]);
+	let params = new URLSearchParams(document.location.search.substring(1));
+	const game_title = params.get("title");
+	const game_id = params.get("id");
 
 
 	useEffect(() => {	
 		const gameInfo = async () => {
 			// Using RAWG API to get information about games
-			await fetch(`https://api.rawg.io/api/games/${l_state.game_id}`, {
+			await fetch(`https://api.rawg.io/api/games/${game_id}`, {
 				headers: {
 					'User-Agent': 'inbundle.games'
 				}	
@@ -133,7 +136,23 @@ export default function Game(props) {
 			.then((response) => response.json())
 			.then((data) => {
 				setGameInfo(data);
+				
+			})
+			.catch((error) => {
+				console.error('Error:', error);
+				
+			});
+
+			await fetch(`https://api.rawg.io/api/games/${game_id}/screenshots`, {
+				headers: {
+					'User-Agent': 'inbundle.games'
+				}	
+			})
+			.then((response) => response.json())
+			.then((data) => {
+				setGameImg(data.results);
 				setLoading(false);
+
 			})
 			.catch((error) => {
 				console.error('Error:', error);
@@ -151,7 +170,7 @@ export default function Game(props) {
 			: 'https://db.inbundle.games' // for production
 
 
-			await fetch(`${BACKEND_URL}/api/v1/games?title=${l_state.game_title.toUpperCase()}`)
+			await fetch(`${BACKEND_URL}/api/v1/games?title=${game_title.toUpperCase()}`)
 			.then((response) => response.json())
 			.then((data) => {
 				// save response from backend
@@ -165,7 +184,7 @@ export default function Game(props) {
 		}
 		dbSearch();
 
-	}, [l_state.game_title, l_state.game_id]);
+	}, [game_title, game_id]);
 
 
 	return (
@@ -179,12 +198,12 @@ export default function Game(props) {
 			{
 				databaseSearch.length > 0 ?
 					<Bundled
-						title={l_state.game_title}
+						title={game_title}
 						info={databaseSearch}
 					/>
 				:
 					<NotBundled
-						title={l_state.game_title}
+						title={game_title}
 					/>
 			}
 			
@@ -201,7 +220,7 @@ export default function Game(props) {
 				:
 					<GameSection>
 						<ImgSlider
-							img_list={l_state.game_screenshots}
+							img_list={gameImg}
 						/>
 
 						<GameDetails>
