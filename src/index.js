@@ -22,8 +22,12 @@ const GlobalStyle = createGlobalStyle`
 	html, body {
 		margin: 0;
 		background-color: #111;
-		color: rgb(${hsvToRgb(0, 0.7, 0.95)});
+		color: var(--main-color);
 		font-family: 'Spartan', sans-serif;
+	}
+
+	:root {
+		--main-color: rgb(${hsvToRgb(0, 0.7, 0.95)});
 	}
 `
 

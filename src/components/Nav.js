@@ -11,6 +11,10 @@ const StyledNav = styled.nav`
 	h1 {
 		color: #fff;
 		font-size: 24px;
+
+		:hover {
+			opacity: 0.8;
+		}
 	}
 
 	a {

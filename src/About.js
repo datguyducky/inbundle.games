@@ -10,7 +10,7 @@ const StyledAbout = styled.div`
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
-	font-size: 16px;
+	font-size: 18px;
 	flex: 1;
 
 	div {
@@ -19,8 +19,39 @@ const StyledAbout = styled.div`
 
 		p {
 			color: #fff;
-			line-height: 1.2em;
+			line-height: 1.3em;
+
+			.color {
+				color: var(--main-color);
+			}
 		}
+	}
+
+	a {
+		color: var(--main-color);
+		text-decoration: none;
+		font-size: 18px;
+
+		:hover {
+			opacity: 0.8;
+		}
+	}
+
+	#sources {
+		margin: 32px 0;
+
+		ul {
+			margin: 6px 0;
+
+			li {
+				font-size: 16px;
+				color: #aaa;
+			}
+		}
+	}
+
+	@media (max-width: 760px) {
+		width: 90%;
 	}
 `
 
@@ -30,23 +61,45 @@ export default function About() {
 		<StyledAbout>
 			<div>
 				<p>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a interdum tellus, id blandit metus. Duis a nisl bibendum, egestas risus eu, vehicula sem. Phasellus at enim et dolor gravida molestie. Fusce pellentesque aliquet varius. Proin ac dolor vitae lacus lacinia venenatis. Nunc porta eu sem sed pretium. Phasellus eros justo, tincidunt eu lacus at, ultricies efficitur magna. Etiam dignissim mi ac velit laoreet, ac finibus libero venenatis. Aenean fermentum lorem et tincidunt accumsan. Morbi nec volutpat ligula, non interdum dolor.
+					inbundle.games is a simple online tool to <span className="color">check if a specific games has ever been in bundle</span> at Humble Bundle - number of bundles it was in and their exact names and dates on which they were available for purchase. 
+					Now, if you've ever wondered if game was bundled then the answer is a few clicks away!
 				</p>
 	
 				<p>
-					Nunc convallis, tellus sit amet mattis placerat, ante sapien pretium orci, nec gravida leo sapien et eros. Donec pretium, nunc quis varius mollis, velit dolor mattis est, vel interdum ex nunc vitae urna. Vestibulum suscipit, metus vitae posuere gravida, ipsum est facilisis purus, in ultricies nunc lorem vel turpis. Phasellus ornare dolor sem. Nam quis finibus libero. Aliquam vitae massa dictum, facilisis purus id, tempor libero. Praesent vitae fermentum lorem. Pellentesque commodo hendrerit lobortis. Curabitur elementum, quam eget pharetra hendrerit, lorem lacus accumsan arcu, pretium condimentum ligula ipsum ac turpis. Praesent cursus interdum est, eu accumsan lacus egestas eget. Proin finibus tortor id viverra molestie. Nunc sed tellus at nulla ultrices bibendum et accumsan odio. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin ultrices risus vel congue facilisis. Nulla mi leo, posuere nec urna at, pulvinar auctor ipsum. 
+					inbundle.games stores information about bundles with games for PCs, consoles and mobile phones and our site <span className="color">goes back to the first available bundle from Humble Bundle - "The Humble Indie Bundle" from May 2010</span>.
 				</p>
 	
 				<p>
-					Praesent in dui suscipit, consectetur magna at, malesuada urna. Nullam non ipsum sit amet mauris ornare lacinia. Donec dapibus eleifend tempor. Praesent a mi tellus. Donec sodales, nulla et congue sodales, eros dolor luctus nisi, non molestie augue enim et erat. Donec in neque tempus, porta elit sed, hendrerit nisl. Etiam nec fermentum eros. Nam eget eleifend erat. Maecenas ac mollis quam. Quisque leo sem, pretium eu scelerisque ut, tincidunt sit amet quam. 
+					<span className="color">Warning!</span> If game has a special version such as: complete edition, game of the year etc., please also check its basic version, because information about its presence in bundles may sometimes be incorrect for special editions. Our site <span className="color">does not display</span> information about occurrences in bundles for <span className="color">DLCs</span>!
+				</p>
+	
+				<p id="sources">
+					Creating this page would not be possible without the following pages:
+					<ul>
+						<li>
+							<a href="https://barter.vg/">Barter.vg</a>
+						</li>
+						<li>
+							<a href="https://www.steamgifts.com/discussions/deals">Steamgifts.com</a>
+						</li>
+						<li>
+							<a href="https://www.reddit.com/r/GameDeals/">r/GameDeals</a>
+						</li>
+						<li>
+							<a href="https://isthereanydeal.com/specials/#/filter:page/humblebundle">IsThereAnyDEAL</a>
+						</li>
+						<li>
+							<a href="https://en.everybodywiki.com/List_of_Humble_Bundles">EverybodyWiki</a>
+						</li>
+						<li>
+							<a href="https://rawg.io/">RAWG API</a> - their wonderful API allows us to display game details and screenshots
+						</li>
+					</ul>
 				</p>
 	
 				<p>
-					In quis arcu dapibus, vehicula sem eu, efficitur sem. Quisque tincidunt metus et lectus volutpat suscipit. Nunc vel convallis erat. Donec dictum, eros non tempor dignissim, felis magna vestibulum velit, et blandit metus elit sit amet sapien. Vestibulum sit amet diam vel tellus elementum faucibus sit amet quis enim. Quisque ornare magna et molestie luctus. Pellentesque id nunc sed erat pulvinar tincidunt at volutpat quam. 
-				</p>
-	
-				<p>
-					Etiam arcu ipsum, posuere vitae gravida sed, suscipit vitae quam. Morbi mauris tortor, tincidunt sit amet interdum id, laoreet nec est. Proin eleifend mi a turpis vehicula dignissim. Duis lobortis id purus et suscipit. Aliquam dignissim felis quis ligula porttitor, a rutrum enim rutrum. Aenean at nunc vitae ante hendrerit laoreet. Suspendisse eget ullamcorper ante. Mauris dignissim urna tellus, eget suscipit augue elementum nec. Curabitur viverra in elit vel pulvinar. Aenean rutrum urna sed hendrerit ornare. Vivamus sed lectus ligula. Donec sit amet bibendum ex. Duis id leo id velit venenatis hendrerit nec eget erat. 
+				And one more thing ... <span className="color">thank you for using my site and I hope it was a pleasant visit</span>.
+				Remember if you have encountered an error or you want to report finding incorrect information on our site, you can use <a href="https://github.com/datguysheepy/inbundle.games/issues">THIS</a> link to do so.
 				</p>
 			</div>
 		</StyledAbout>
