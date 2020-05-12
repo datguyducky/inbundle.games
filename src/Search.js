@@ -86,7 +86,10 @@ const NoResult = styled.p`
 export default function Search(props) {
 	const [loading, setLoading] = useState(true);
 	const [gamesSearch, setGamesSearch] = useState([]);
-	const l_state = props.history.location.state || '';
+	let params = new URLSearchParams(document.location.search.substring(1));
+	const game_title = props.history.location
+	? props.history.location.state.game_title
+	: params.get("title")
 
 	
 	useEffect(() => {
@@ -96,7 +99,7 @@ export default function Search(props) {
 		
 		const toSearch = async () => {
 			// Using RAWG API to get information about games
-			await fetch(`https://api.rawg.io/api/games?search=${l_state.game_title}`, {
+			await fetch(`https://api.rawg.io/api/games?search=${game_title}`, {
 				headers: {
 					'User-Agent': 'inbundle.games'
 				}	
@@ -139,7 +142,7 @@ export default function Search(props) {
 				console.error('Error:', error);
 			});
 		}
-	}, [l_state.game_title]);
+	}, [game_title]);
 
 
 	//TODO: add skeleton component when loading?
