@@ -87,9 +87,7 @@ export default function Search(props) {
 	const [loading, setLoading] = useState(true);
 	const [gamesSearch, setGamesSearch] = useState([]);
 	let params = new URLSearchParams(document.location.search.substring(1));
-	const game_title = props.history.location
-	? props.history.location.state.game_title
-	: params.get("title")
+	const game_title = params.get("title");
 
 	
 	useEffect(() => {
