@@ -80,6 +80,8 @@ const StyledForm = styled.form`
 function Input(props) {
 	const [SearchValue, setSearch] = useState('');
 	const [recentSearch, setRecent] = useState(true );
+	let params = new URLSearchParams(document.location.search.substring(1));
+	const game_title = params.get("title");
 	
 	// Array with title of games for auto-typing effect on search input 
 	const gamesArr = [
@@ -121,7 +123,7 @@ function Input(props) {
 				<span id='u-text'>
 					{
 						SearchValue === '' ?
-							props.history.location.state ?
+							game_title ?
 								''
 							:
 								<ReactTypingEffect
@@ -138,8 +140,8 @@ function Input(props) {
 				<input 
 					type='text' 
 					value={
-						props.history.location.state && recentSearch ?
-							props.history.location.state.game_title
+						game_title && recentSearch 
+						? game_title
 						: SearchValue
 					} 
 					onChange={e => searchHandler(e)}

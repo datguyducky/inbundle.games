@@ -19,6 +19,7 @@ const BundleHeader = styled.div`
 	display: flex;
 	justify-content: center;
 	flex-wrap: wrap;
+	align-items: flex-end;
 
 	h1 {
 		font-size: 28px;
