@@ -19,8 +19,8 @@ const ContentWrapper = styled.div`
   h1 {
     font-size: 62px;
     font-weight: 600;
-    margin: 0;
-
+    margin-top: 50px;
+    
     @media (max-width: 960px) {
       font-size: 32px;
     }

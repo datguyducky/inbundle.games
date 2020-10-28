@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ReactTypingEffect from "react-typing-effect";
 import styled from "styled-components";
 import { withRouter } from "react-router-dom";
@@ -42,7 +42,9 @@ const StyledForm = styled.form`
       height: 22px;
     }
   }
-
+  h3 {
+    position: absolute;
+  }
   label {
     position: relative;
     width: 480px;
@@ -79,6 +81,8 @@ const StyledForm = styled.form`
 function Input(props) {
   const [SearchValue, setSearch] = useState("");
   const [recentSearch, setRecent] = useState(true);
+  const [stopTyping, setStopTyping] = useState(false);
+  
   let params = new URLSearchParams(document.location.search.substring(1));
   const game_title = params.get("title");
 
@@ -101,6 +105,15 @@ function Input(props) {
     const value = target.value;
     setSearch(value);
   };
+
+  useEffect(() => {
+    if (SearchValue) {
+      const timeout = setTimeout(() => setStopTyping(true), 1000);
+      return () => clearTimeout(timeout);
+    } else {
+      setStopTyping(false);
+    }
+  }, [SearchValue]);
 
   const submitHandler = (event) => {
     // kinda hacky way to submit form without button, but with only by pressing ENTER key
@@ -142,6 +155,10 @@ function Input(props) {
       </label>
 
       <input type="submit" hidden />
+      {
+        stopTyping ? <h3>Press enter to search for a game</h3> : ''
+      }
+      
     </StyledForm>
   );
 }
