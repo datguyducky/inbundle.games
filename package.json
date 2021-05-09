@@ -1,7 +1,7 @@
 {
   "name": "inbundle.games",
   "homepage": "https://inbundle.games",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": true,
   "dependencies": {
     "@icons-pack/react-simple-icons": "^2.5.0",
