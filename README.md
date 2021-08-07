@@ -1,3 +1,6 @@
+NO LONGER SUPPORTED, sorry to dissapoint but the whole project was closed by me and is no longer supported. 
+If you would like to clone and make this project live again then be sure to message me somehow, because I still should have a backup of the database that was used along with this project.
+
 # inbundle.games
 Check if game has ever been bundled (at humblebundle.com). With database with over 500 bundles and 4700 games for PCs, consoles and mobile phones this task is super easy and fast. 
 
